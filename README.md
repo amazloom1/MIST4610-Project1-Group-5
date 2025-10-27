@@ -47,7 +47,7 @@ The data model includes the following main entities:
 | **Shift_has_Employees** | `Shift_shiftid`, `Employees_employeeid`, `shift_date` | Links employees to specific shifts and dates. |
 | **Department_has_Aisle** | `Department_departmentid`, `Aisle_aisle_num`, `Department_Store_idStore` | Connects aisles to departments within stores. |
 
-![Data Dictionary](Data_Dictionary.pdf)
+[View Data Dictionary (PDF)](Data_Dictionary.pdf)
 
 ---
 
@@ -186,6 +186,7 @@ This database serves as a comprehensive store management tool that:
 By combining these data sources, managers gain actionable insights into operations, staffing, and store performance, driving data-informed business decisions.
 
 ---
+
 
 
 
