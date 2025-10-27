@@ -64,9 +64,11 @@ Each query includes a **description** and **justification** to explain its busin
 SELECT idStore, location, year_opened 
 FROM Store;
 ```
-**Description**: Retrieves each store’s ID, location, and opening year.
+**Description**: 
+- Takes information from stores relating to year opened, location, and Id 
 
-**Justification**: Useful for analyzing store age and expansion strategy.
+**Justification**: 
+- Uses the SELECT clause to specify which type of information is needed from the Store column. 
 
 ### 2. Show all employees hired after 2020
 ```sql
@@ -74,9 +76,12 @@ SELECT first_name, last_name, hire_date
 FROM Employees
 WHERE hire_date > '2020-01-01';
 ```
-**Description**: Displays employees hired after January 1, 2020.
+**Description**:
+- Takes information from the Employees table. Selects multiple columns of information, including first name, last name, and hire date. Then returns the employee information only if they were hired after 2020
 
-**Justification**: Helps track recent hires for HR and workforce planning.
+**Justification**: 
+- Uses the SELECT clause to specify which information was needed from the table
+- Then filters using the WHERE clause narrowing it down to specific rows instead of returning all the specified information
 
 ### 3. Display all suppliers located in a specific city (e.g., Chicago)
 ```sql
@@ -84,9 +89,12 @@ SELECT supplier_name, city
 FROM Supplier
 WHERE city = 'Chicago';
 ```
-**Description**: Lists suppliers based in a particular city.
+**Description**: 
+- Takes the suppliers name and city it’s based in from the Supplier table, returning only suppliers that are based in the city Chicago
 
-**Justification**: Useful for managing regional supplier relationships.
+**Justification**: 
+- Uses the SELECT clause to take specific columns relating to the supplier table
+- Uses the WHERE clause to filter through the acquired data points only returning specified information, this being the city, ‘Chicago’.
 
 ### 4. List all departments in each store
 ```sql
@@ -94,21 +102,29 @@ SELECT department_name, storeid
 FROM Department
 ORDER BY storeid;
 ```
-**Description**: Shows all departments, grouped by store.
+**Description**: 
+- Takes the department name and storeid from the Department table, ordering it based off the storeid 
 
-**Justification**: Provides an overview of each store’s organizational structure.
+**Justification**: 
+- Uses the SELECT clause to obtain certain columns from the Department table
+- Uses the ORDER BY clause to arrange the information obtained from the SELECT clause based off the storeid column
+
 
 ### 5. Find the total number of employees per department in each store
 ```sql
-SELECT d.storeid, d.department_name, COUNT(e.employeeid) AS total_employees 
-FROM Department d 
-JOIN Employees e ON d.departmentid = e.departmentid
-GROUP BY d.storeid, d.department_name
-ORDER BY d.storeid;
+SELECT Department.storeid, Department.department_name, COUNT(Employees.employeeid) AS total_employees 
+FROM Department JOIN Employees ON Department.departmentid = Employees.departmentid
+GROUP BY Department.storeid, Department.department_name 
+ORDER BY Department.storeid;
 ```
-**Description**: Calculates how many employees work in each department per store.
+**Description**: 
+- Retrieves the store id, department name, and the total number of employees from the department table. Then joins the employee table with the department table to be able to access the amount of employees within each department. Lastly groups the information into two categories, store id and department name, then orders the information by the store id
 
-**Justification**: Helps identify staffing levels and resource allocation.
+**Justification**:
+- Uses the SELECT clause to select all the required information from the Department and Employee table
+- Uses the JOIN clause to connect the department table and employee table
+- Uses the GROUP BY clause to group the information obtained from the department and employee clause allowing for more concise information
+- Uses the ORDER BY clause to create a more precise and legible return 
 
 ### 6. Identify employees who are managers (have subordinates)
 ```sql
@@ -116,46 +132,56 @@ SELECT DISTINCT m.employeeid, m.first_name, m.last_name
 FROM Employees m
 JOIN Employees e ON m.employeeid = e.managerid;
 ```
-**Description**: Finds employees managing others.
+**Description**: 
+- Selects the employee id, first name, and last name of employees who have employees that are under them
 
-**Justification**: Identifies leadership roles for performance and payroll review.
+**Justification**:
+- This is useful for finding the managers of the stores
+- Uses the SELECT clause to select the data from the employee table
+- Uses the JOIN to connect the managers version of the employee table to the employee version
 
 ### 7. Find the average hourly wage by department, sorted from highest to lowest
 ```sql
-SELECT d.department_name, AVG(e.hourly_wage) AS avg_wage 
-FROM Employees e
-JOIN Department d ON e.departmentid = d.departmentid 
-GROUP BY d.department_name
+SELECT Department.department_name, AVG(Employees.hourly_wage) AS avg_wage
+FROM Employees
+JOIN Department ON Department.departmentid = Department.departmentid 
+GROUP BY Department.department_name
 ORDER BY avg_wage DESC;
 ```
-**Description**: Calculates average hourly wages by department.
+**Description**: 
+- This gives the department name and average salary of that department
 
-**Justification**: Aids in evaluating pay equity and budgeting for raises.
+**Justification**:
+- This is useful for getting the average salary for the department which can be used to base starting salaries, raises, or if one department is being over or underpaid
 
 ### 8. Determine which suppliers provide the most products
 ```sql
-SELECT s.supplier_name, COUNT(p.productid) AS num_products 
-FROM Supplier s
-JOIN Products p ON s.supplierid = p.Supplier_supplierid
-GROUP BY s.supplier_name
+SELECT Supplier.supplier_name, COUNT(Products.productid) AS num_products
+FROM Supplier
+JOIN Products ON Supplier.supplierid = Products.Supplier_supplierid
+GROUP BY Supplier.supplier_name
 ORDER BY num_products DESC;
 ```
-**Description**: Lists suppliers by the number of products they provide.
+**Description**:
+- This gives the supplier name and the number of products the supplier supplies
 
-**Justification**: Identifies key suppliers and potential supply chain optimizations.
+**Justification**: 
+- This can be used to determine if the store could condense its supply chain which could save money
 
 ### 9. Show the total number of aisles and capacity per store
 ```sql
-SELECT st.idStore, COUNT(a.aisle_num) AS total_aisles, SUM(a.capacity) AS total_capacity
-FROM Store st 
-JOIN Department d ON st.idStore = d.storeid
-JOIN Department_has_Aisle da ON d.departmentid = da.Department_departmentid
-JOIN Aisle a ON da.Aisle_aisle_num = a.aisle_num 
-GROUP BY st.idStore;
+SELECT Store.idStore, COUNT(Aisle.aisle_num) AS total_aisles, SUM(Aisle.capacity) AS total_capacity
+FROM Store
+JOIN Department ON Store.idStore = Department.storeid
+JOIN Department_has_Aisle ON Department.departmentid = Department_has_Aisle.Department_departmentid
+JOIN Aisle ON Department_has_Aisle.Aisle_aisle_num = Aisle.aisle_num 
+GROUP BY Store.idStore;
 ```
-**Description**: Summarizes aisle count and total capacity by store.
+**Description**:
+- Gives the store id, the number of aisles, and the total amount of shelf space
 
-**Justification**: Supports store layout optimization and inventory management.
+**Justification**: 
+- This can be used to show how much space each store has, if management had more products that they wanted on shelves
 
 ### 10. Find employees working overlapping shifts on the same date
 ```sql
@@ -170,9 +196,11 @@ WHERE s1.Shift_shiftid IN (
 )
 AND e1.employeeid < e2.employeeid;
 ```
-**Description**: Detects employees with overlapping shifts on the same day.
+**Description**:
+- Gives two employees and the date of their shifts 
 
-**Justification**: Helps managers prevent scheduling conflicts and overstaffing.
+**Justification**:
+- Can be used to ensure that there are not too many employees working on any given day at any given time
 
 ---
 
@@ -187,6 +215,7 @@ This database serves as a comprehensive store management tool that:
 By combining these data sources, managers gain actionable insights into operations, staffing, and store performance, driving data-informed business decisions.
 
 ---
+
 
 
 
