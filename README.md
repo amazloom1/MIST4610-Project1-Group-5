@@ -19,7 +19,7 @@ This database provides the foundation for operational efficiency, workforce mana
 
 ## 🧩 Data Model
   
-![Data Model]("C:\Users\nayou\Downloads\database.png")
+![Data Model]("database.png")
 
 The data model includes the following main entities:
 - **Store** – Contains location and opening year information.
@@ -184,3 +184,4 @@ This database serves as a comprehensive store management tool that:
 By combining these data sources, managers gain actionable insights into operations, staffing, and store performance, driving data-informed business decisions.
 
 ---
+
