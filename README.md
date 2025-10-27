@@ -19,7 +19,7 @@ This database provides the foundation for operational efficiency, workforce mana
 
 ## 🧩 Data Model
   
-![Data Model](database.png)
+![Data Model](Database.png)
 
 The data model includes the following main entities:
 - **Store** – Contains location and opening year information.
@@ -46,6 +46,8 @@ The data model includes the following main entities:
 | **Shift** | `shiftid`, `start_time`, `end_time` | Represents working hours for each shift. |
 | **Shift_has_Employees** | `Shift_shiftid`, `Employees_employeeid`, `shift_date` | Links employees to specific shifts and dates. |
 | **Department_has_Aisle** | `Department_departmentid`, `Aisle_aisle_num`, `Department_Store_idStore` | Connects aisles to departments within stores. |
+
+![Data Dictionary](Data_Dictionary.pdf)
 
 ---
 
@@ -184,5 +186,6 @@ This database serves as a comprehensive store management tool that:
 By combining these data sources, managers gain actionable insights into operations, staffing, and store performance, driving data-informed business decisions.
 
 ---
+
 
 
