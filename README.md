@@ -5,7 +5,7 @@ Joanne Lee, Arian Mazloom, Bryson Tanner, Jack Cramer, Richard Kimmig
 
 ---
 
-## 📘 Scenario Description
+##  Scenario Description
 
 The data model we created is designed to maintain comprehensive records essential for keeping our retail store operations efficient and organized. It contains all information regarding **suppliers, products, departments, aisles, stores, employees, and work shifts**.
 
@@ -17,7 +17,7 @@ This database provides the foundation for operational efficiency, workforce mana
 
 ---
 
-## 🧩 Data Model
+##  Data Model
   
 ![Data Model](Database.png)
 
@@ -63,7 +63,7 @@ The database does not store:
 
 ---
 
-## 📗 Data Dictionary
+##  Data Dictionary
 
 | Table Name | Key Fields | Description |
 |-------------|-------------|--------------|
@@ -82,7 +82,7 @@ The database does not store:
 
 ---
 
-## 💻 SQL Queries
+##  SQL Queries
 
 Below are the SQL queries developed for managerial insights.  
 Each query includes a **description** and **justification** to explain its business relevance.
@@ -234,7 +234,7 @@ AND e1.employeeid < e2.employeeid;
 
 ---
 
-## 🏁 Summary
+##  Summary
 
 This database serves as a comprehensive store management tool that:
 
@@ -245,6 +245,7 @@ This database serves as a comprehensive store management tool that:
 By combining these data sources, managers gain actionable insights into operations, staffing, and store performance, driving data-informed business decisions.
 
 ---
+
 
 
 
